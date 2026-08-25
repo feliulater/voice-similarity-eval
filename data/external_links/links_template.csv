@@ -1,0 +1,4 @@
+resource_id,tipo,descripcion,enlace,fecha,observaciones
+res001,voces_naturales,"Carpeta externa con voces naturales",,,
+res002,voces_sinteticas,"Carpeta externa con voces generadas",,,
+res003,modelos,"Carpeta externa con modelos o pesos pesados",,,

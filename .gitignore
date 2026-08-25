@@ -1,6 +1,48 @@
-tmp_model/
-models/
+# Entornos y cachés
+.venv/
 __pycache__/
+*.pyc
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Backups locales
+*.bak
+
+# Dependencias externas
 NISQA/
+
+# Resultados generados
 resultados_nisqa/
-outputs/datos_crudos/
+outputs/
+results/runs/*/
+
+# Audios y archivos pesados
+*.wav
+*.mp3
+*.flac
+*.ogg
+*.m4a
+*.mp4
+
+# Modelos y pesos pesados
+*.pt
+*.pth
+*.ckpt
+*.tar
+*.onnx
+*.bin
+*.safetensors
+
+# Permitir documentación y archivos livianos
+!data/**/*.csv
+!data/**/*.md
+!data/**/.gitkeep
+!results/**/*.md
+!results/**/.gitkeep
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Cache de modelos descargados
+tmp_model/

@@ -1,0 +1,11 @@
+nombre_experimento: caso_base
+dataset_metadata: data/metadata_template.csv
+grupo: adultos
+sistemas_tts:
+  - xtts
+metricas:
+  - identidad
+  - frecuencia
+  - calidad
+sample_rate: 16000
+output_dir: results/runs/experimento_base

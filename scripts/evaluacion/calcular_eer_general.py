@@ -2,6 +2,7 @@ import os
 import glob
 import torch
 import torchaudio
+import librosa
 import numpy as np
 import matplotlib.pyplot as plt
 from speechbrain.inference.speaker import EncoderClassifier
@@ -29,10 +30,9 @@ for ruta in sorted(rutas_audios):
     metadata.append({'id': identidad, 'tipo': tipo, 'archivo': nombre})
     
     # Procesamiento de audio
-    signal, fs = torchaudio.load(ruta)
-    if fs != 16000:
-        transform = torchaudio.transforms.Resample(orig_freq=fs, new_freq=16000)
-        signal = transform(signal)
+    # Se usa librosa para evitar dependencia de TorchCodec/CUDA al cargar WAV
+    audio, fs = librosa.load(ruta, sr=16000, mono=True)
+    signal = torch.tensor(audio, dtype=torch.float32).unsqueeze(0)
         
     with torch.no_grad():
         emb = classifier.encode_batch(signal).squeeze().cpu().numpy()

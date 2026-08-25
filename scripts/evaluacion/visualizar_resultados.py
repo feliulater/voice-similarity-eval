@@ -2,6 +2,7 @@ import os
 import glob
 import torch
 import torchaudio
+import librosa
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -32,13 +33,9 @@ for ruta in sorted(rutas_validas):
     nombres_etiquetas.append(etiqueta.strip())
     
     # Cargar audio y extraer el embedding vectorial
-    signal, fs = torchaudio.load(ruta)
-    
-    # Asegurar que esté a 16kHz y en mono
-    if fs != 16000:
-        print(f"Advertencia: {nombre_archivo} no está a 16kHz. Remuestreando...")
-        transform = torchaudio.transforms.Resample(orig_freq=fs, new_freq=16000)
-        signal = transform(signal)
+    # Se usa librosa para evitar dependencia de TorchCodec/CUDA al cargar WAV
+    audio, fs = librosa.load(ruta, sr=16000, mono=True)
+    signal = torch.tensor(audio, dtype=torch.float32).unsqueeze(0)
     
     # Extraer características (1x1x192 vector)
     with torch.no_grad():
