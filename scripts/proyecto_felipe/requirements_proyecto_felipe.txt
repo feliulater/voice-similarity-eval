@@ -1,0 +1,12 @@
+numpy
+pandas
+scipy
+scikit-learn
+matplotlib
+librosa
+soundfile
+torch
+torchaudio
+speechbrain
+TTS
+unidic-lite
